@@ -1,0 +1,18 @@
+version: '3'
+services:
+    db:
+        image: 'timescale/timescaledb:latest-pg15'
+        restart: always
+        environment: 
+            POSTGRES_PASSWORD: password
+            POSTGRES_USER: postgres
+        volumes:
+            - ./input/cpu_usage.sql:/docker-entrypoint-initdb.d/init.sql
+    server:
+        build:
+            dockerfile: 'Dockerfile'
+            context: '.'
+        links:
+          - db
+        depends_on:
+          - db

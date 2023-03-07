@@ -1,0 +1,10 @@
+Commands to run the code and see output.
+
+`docker-compose build && docker-compose up`
+
+Note: do to issues getting psql working in my docker image the server spends the first bit of time
+populating data into the database. After running the commands listed in set_up_and_run.sh the
+docker server image shuts down. If you would like to interact with the cli after the server image
+shuts down run `docker start timescale_server_1` to restart the image followed by 
+`docker exec -it timescale_server_1 /bin/sh` to interact with the image. `./cli` should run the cli
+from inside the image.
